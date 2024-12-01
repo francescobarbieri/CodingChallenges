@@ -54,10 +54,7 @@ void firstPartOfTheProblem() {
   cout << "Sum of all distances: " << sumOfAllDistances << "\n";
 }
 
-int main() {
-
-  // firstPartOfTheProblem();
-
+void secondPartOfTheProblem() {
   ifstream inputFile("input.txt");
   string readLine;
   std::unordered_map<int, int> leftList;
@@ -82,6 +79,10 @@ int main() {
   }
 
   cout << "Similarity score: " << similarityScore << endl; 
+}
 
+int main() {
+  firstPartOfTheProblem();
+  secondPartOfTheProblem();
   return 1;
 }
