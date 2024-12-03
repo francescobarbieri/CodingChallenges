@@ -20,7 +20,7 @@ int evaluateMultiplication (std::smatch match) {
 
 
 int main() {
-  std::regex pattern("mul\\((\\d{1,3}),(\\d{1,3})\\)");
+  std::regex pattern("mul\\((\\d{1,3}),(\\d{1,3})\\)|do\\(\\)|don't\\(\\)");  
   std::fstream inputFile("input.txt");
   std::string text;
   int sum = 0;
@@ -29,14 +29,23 @@ int main() {
     while(getline(inputFile, text)) {
       auto words_begin = std::sregex_iterator(text.begin(), text.end(), pattern);
       auto words_end = std::sregex_iterator();
+      bool flag = true;
 
       for(std::sregex_iterator i = words_begin; i != words_end; ++i) {
         std::smatch match = *i;
-        sum += evaluateMultiplication(match);
+
+        if(match[0] == "do()") {
+          flag = true;
+        } else if (match[0] == "don't()") {
+          flag = false;
+        }
+        if(flag && match[0] != "do()" && match[0] != "don't()") {
+          sum += evaluateMultiplication(match);
+        }
       }
     }
-  }
-
+  } 
+  
   std::cout << "Result: " << sum << std::endl;
   return 1;
 }
