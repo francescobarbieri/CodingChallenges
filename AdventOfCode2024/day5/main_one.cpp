@@ -38,7 +38,6 @@ int main() {
   std::string line;
   std::map<int, std::set<int> > rules;
   std::vector<std::vector<int> > pageLists;
-  int index = 0;
   int readingRules = true;
   int part1 = 0;
   int part2 = 0;
